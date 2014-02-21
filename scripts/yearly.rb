@@ -23,5 +23,16 @@ $years.sort_by{|k,v| k }.each do |y|
   puts "#{y[0]}, #{y[1]} dominios (nuevos?): #{total} U$"
 end
 
-# si consideramos que el dato hace referencia a la fecha en la que registro un dominio
+puts; puts
+
+# si consideramos que el dato hace referencia a la fecha en la que registro un dominio (muy probable)
 # y se lo siguio renovando hasta el 2014 (y que todos los dominios del archivo estan activos):
+
+$yearly_total = {}; $years.each { |y, n| $yearly_total.store(y,0) }
+
+$years.each { |y, n|  $years.each {  |yy,nn| nn.times {$yearly_total[y]+=1 if yy <= y } } }
+
+$yearly_total.sort_by {|k,v| k }.each do |y|
+  total = ( y[1]*$cost/$dollar_exch )
+  puts "#{y[0]}, #{y[1]} dominios (total): #{total} U$"
+end
