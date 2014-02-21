@@ -8,6 +8,9 @@ File.read('../datos/domains.txt').split("\n").each do |ln|
   domain, dt = splits[0], Date.strptime( splits[1].strip, '%Y-%m-%d')
   $years.store( dt.year, 0 ) if !$years[dt.year]
   $years[dt.year] += 1
+
+  # para curiosear los dominios mas viejitos:
+
   #if dt.year < 1997
   #  p [domain,dt.strftime('%Y-%m-%d') ]
   #end
