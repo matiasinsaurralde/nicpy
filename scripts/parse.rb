@@ -6,19 +6,17 @@ def domain_status(domain_name)
   return Nokogiri::HTML( raw_html ).css('.texto_1')[4].inner_text
 end
 
-$threads = []
+File.read('../datos/dnsadmin_dominio.sql').split("\n").each do |ln|
+  splits = ln.split(',').map{ |r| r.gsub('\'', '')  }
+  domain_name = splits[0].match(/\((.*)/)[1].strip
+  tld = splits[1].strip
+  domain = "#{domain_name}.#{tld}.py"
 
-File.read('../datos/dnsadmin_dominio.sql').split("\n")[20,40].each do |ln|
-  $threads << Thread.new do
-   splits = ln.split(',')
-   domain_name = splits[0].match(/\('(.*)'/)[1].strip
-   tld = splits[1].gsub("'", '').strip
-   domain = "#{domain_name}.#{tld}.py"
-   puts [ domain, domain_status(domain) ]
+  if !splits[2].include?('NULL')
+    open( '../datos/domains.txt', 'a') do |f|
+      f.puts( "#{domain}\t#{splits[2].strip}" )
+    end
   end
 end
 
 
-$threads.each do |th|
-  th.join
-end
