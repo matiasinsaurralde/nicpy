@@ -8,7 +8,7 @@ end
 
 $threads = []
 
-File.read('datos/dnsadmin_dominio.sql').split("\n")[20,40].each do |ln|
+File.read('../datos/dnsadmin_dominio.sql').split("\n")[20,40].each do |ln|
   $threads << Thread.new do
    splits = ln.split(',')
    domain_name = splits[0].match(/\('(.*)'/)[1].strip
