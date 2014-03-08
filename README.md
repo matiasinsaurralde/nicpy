@@ -3,7 +3,7 @@ NICPY
 
 Estos scripts me sirvieron para interpretar y analizar la información que fue filtrada del NICPY.
 
-Realicé algunas gráficas que siguen el desarrollo de nuestro ccTLD (.py), así como también una estimativa del ingreso que los mismos estarían generando.
+Los resultados me permitieron seguir el desarrollo de nuestro ccTLD (.py), así como también estimar el ingreso que los mismos estarían generando.
 
 Algunos gráficos (y análisis del incidente):
 
